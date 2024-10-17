@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse an Array</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        .instructions {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Let's Reverse an Array!</h1>
+    <div class="instructions">
+        <p>Enter a list of elements separated by commas (e.g., apple, banana, cherry).</p>
+        <p>Click the button below to see them reversed!</p>
+    </div>
+    <input type="text" id="arrayInput" placeholder="Enter your elements here">
+    <button onclick="reverseArray()">Reverse Array</button>
+    <div class="result" id="result"></div>
+
+    <script>
+        function reverseArray() {
+            const input = document.getElementById('arrayInput').value;
+            const arr = input.split(',').map(item => item.trim()); // Convert input string to an array of strings
+            
+            if (arr.length === 0 || arr.some(item => item === '')) {
+                document.getElementById('result').textContent = 'Please enter valid elements to reverse.';
+                return;
+            }
+
+            let left = 0;
+            let right = arr.length - 1;
+
+            // Swap elements in place
+            while (left < right) {
+                [arr[left], arr[right]] = [arr[right], arr[left]];
+                left++;
+                right--;
+            }
+
+            document.getElementById('result').textContent = `Here’s your reversed array: ${arr.join(', ')}`;
+        }
+    </script>
+</body>
+</html>

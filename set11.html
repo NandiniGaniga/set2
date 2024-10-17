@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Duplicates from Array</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        .instructions {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Remove Duplicates from a Sorted Array</h1>
+    <div class="instructions">
+        <p>Enter a sorted list of numbers separated by commas (e.g., 1, 1, 2, 3, 3, 4).</p>
+        <p>Click the button below to see how many unique elements remain!</p>
+    </div>
+    <input type="text" id="arrayInput" placeholder="Enter your sorted numbers here">
+    <button onclick="removeDuplicates()">Remove Duplicates</button>
+    <div class="result" id="result"></div>
+
+    <script>
+        function removeDuplicates() {
+            const input = document.getElementById('arrayInput').value;
+            const arr = input.split(',').map(item => parseInt(item.trim())).filter(Number.isFinite); // Convert input to an array of numbers
+            
+            if (arr.length === 0) {
+                document.getElementById('result').textContent = 'Please enter valid sorted numbers.';
+                return;
+            }
+
+            let uniqueIndex = 0; // Pointer for the unique elements
+
+            // Iterate through the array to find unique elements
+            for (let i = 1; i < arr.length; i++) {
+                if (arr[uniqueIndex] !== arr[i]) {
+                    uniqueIndex++;
+                    arr[uniqueIndex] = arr[i]; // Update the next unique position
+                }
+            }
+
+            // The length of unique elements is uniqueIndex + 1
+            const uniqueLength = uniqueIndex + 1;
+            document.getElementById('result').textContent = `Number of unique elements: ${uniqueLength}`;
+        }
+    </script>
+</body>
+</html>
